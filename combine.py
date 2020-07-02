@@ -10,8 +10,8 @@ import numpy as np
 def main():
     parser = argparse.ArgumentParser(description='Combine up to 3 images into a single image to reduce data size')
 
-    parser.add_argument('--in_dir', required=True)
-    parser.add_argument('--out_dir', required=True)
+    parser.add_argument('in_dir', required=True)
+    parser.add_argument('out_dir', required=True)
 
     args = parser.parse_args()
     path = args.in_dir

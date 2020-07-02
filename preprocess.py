@@ -10,8 +10,8 @@ import numpy as np
 def main():
     parser = argparse.ArgumentParser(description='Preprocess raw images by intelligent downscaling')
 
-    parser.add_argument('--in_dir', required=True)
-    parser.add_argument('--out_dir', required=True)
+    parser.add_argument('in_dir', required=True)
+    parser.add_argument('out_dir', required=True)
 
     args = parser.parse_args()
 
