@@ -17,12 +17,14 @@ from time import time
 import numpy as np
 from sklearn.metrics import confusion_matrix, classification_report
 
+import argparse
+
 # plots
 import matplotlib.pyplot as plt
 
 
 # method for building the neural network architecture
-def get_classifier():
+def get_classifier(input_shape):
     model = Sequential()
 
     """
@@ -129,7 +131,7 @@ def main():
         class_mode='categorical',
         subset='validation')
 
-    classifier = get_classifier()
+    classifier = get_classifier(input_shape)
 
     classifier.fit_generator(
         train_generator,
