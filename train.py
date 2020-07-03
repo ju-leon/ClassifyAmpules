@@ -35,10 +35,6 @@ def get_classifier(input_shape):
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(128, (4, 4)))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
     model.add(Dropout(0.5))
 
     model.add(Flatten())
@@ -46,8 +42,6 @@ def get_classifier(input_shape):
     model.add(Activation('relu'))
     model.add(Dense(512))
     model.add(Activation('relu'))
-
-    model.add(Flatten())
     model.add(Dense(4))
     model.add(Activation('softmax'))
 
