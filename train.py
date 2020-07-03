@@ -81,7 +81,7 @@ def main():
     args = parser.parse_args()
 
     # constants for training
-    img_width, img_height = 200, 200
+    img_width, img_height = 100, 100
     train_data_dir = args.data_dir
     nb_train_samples = 892
     nb_validation_samples = 382
