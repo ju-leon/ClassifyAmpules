@@ -35,6 +35,18 @@ def get_classifier(input_shape):
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
+    model.add(Conv2D(256, (4, 4)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+    model.add(Conv2D(256, (3, 3)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+    model.add(Conv2D(256, (2, 2)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
     model.add(Dropout(0.5))
 
     model.add(Flatten())
@@ -81,12 +93,12 @@ def main():
     args = parser.parse_args()
 
     # constants for training
-    img_width, img_height = 150, 150
+    img_width, img_height = 64, 64
     train_data_dir = args.data_dir
     nb_train_samples = 892
     nb_validation_samples = 382
     epochs = 100
-    batch_size = 16
+    batch_size = 32
 
     if K.image_data_format() == 'channels_first':
         input_shape = (3, img_width, img_height)
