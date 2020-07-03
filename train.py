@@ -81,12 +81,12 @@ def main():
     args = parser.parse_args()
 
     # constants for training
-    img_width, img_height = 100, 100
+    img_width, img_height = 150, 150
     train_data_dir = args.data_dir
     nb_train_samples = 892
     nb_validation_samples = 382
     epochs = 100
-    batch_size = 32
+    batch_size = 16
 
     if K.image_data_format() == 'channels_first':
         input_shape = (3, img_width, img_height)
