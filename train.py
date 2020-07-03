@@ -27,16 +27,11 @@ import matplotlib.pyplot as plt
 def get_classifier(input_shape):
     model = Sequential()
 
-    """
     model.add(Conv2D(128, (5, 5), input_shape=input_shape))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
     model.add(Conv2D(256, (4, 4)))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    model.add(Conv2D(128, (4, 4)))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -48,14 +43,6 @@ def get_classifier(input_shape):
     model.add(Dense(512))
     model.add(Activation('relu'))
 
-    """
-    print(input_shape)
-
-    model.add(keras.applications.MobileNet(
-        input_shape=input_shape,
-        include_top=False,
-        weights="imagenet",
-    ))
     model.add(Flatten())
     model.add(Dense(2))
     model.add(Activation('softmax'))
@@ -74,7 +61,7 @@ def get_callbacks():
 
 
 # method for plotting the confusion matrix
-def plot_confusion_matrix():
+def plot_confusion_matrix(validation_generator):
     model = load_model('/content/drive/My Drive/Hackaton/nets/final.h5')
     y_pred = model.predict_generator(validation_generator)
     y_pred = np.argmax(y_pred, axis=-1)
@@ -96,7 +83,7 @@ def main():
     args = parser.parse_args()
 
     # constants for training
-    img_width, img_height = 100, 100
+    img_width, img_height = 205, 246
     train_data_dir = args.data_dir
     nb_train_samples = 892
     nb_validation_samples = 382
@@ -141,7 +128,7 @@ def main():
         validation_steps=nb_validation_samples // batch_size,
         callbacks=get_callbacks())
 
-    plot_confusion_matrix()
+    plot_confusion_matrix(validation_generator)
 
 
 if __name__ == "__main__":
