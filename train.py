@@ -35,6 +35,15 @@ def get_classifier(input_shape):
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
+    model.add(Conv2D(256, (3, 3)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+    model.add(Conv2D(265, (2, 2)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+
     model.add(Dropout(0.5))
 
     model.add(Flatten())
@@ -42,7 +51,9 @@ def get_classifier(input_shape):
     model.add(Activation('relu'))
     model.add(Dense(512))
     model.add(Activation('relu'))
-    model.add(Dense(4))
+
+    model.add(Dense(2))
+
     model.add(Activation('softmax'))
 
     model.compile(loss='categorical_crossentropy',
@@ -59,8 +70,9 @@ def get_callbacks():
 
 
 # method for plotting the confusion matrix
-def plot_confusion_matrix(save_dir):
-    model = load_model("/content/drive/My Drive/Hackaton/nets/leon.h5",)
+def plot_confusion_matrix(validation_generator):
+    model = load_model('/content/drive/My Drive/Hackaton/nets/final.h5')
+
     y_pred = model.predict_generator(validation_generator)
     y_pred = np.argmax(y_pred, axis=-1)
 
@@ -82,7 +94,7 @@ def main():
     args = parser.parse_args()
 
     # constants for training
-    img_width, img_height = 100, 100
+    img_width, img_height = 205, 246
     train_data_dir = args.data_dir
     nb_train_samples = 892
     nb_validation_samples = 382
@@ -115,7 +127,8 @@ def main():
         target_size=(img_width, img_height),
         batch_size=batch_size,
         class_mode='categorical',
-        subset='validation')
+        subset='validation',
+        shuffle=False)
 
     classifier = get_classifier(input_shape)
 
@@ -127,7 +140,8 @@ def main():
         validation_steps=nb_validation_samples // batch_size,
         callbacks=get_callbacks())
 
-    plot_confusion_matrix(args.save_dir)
+    plot_confusion_matrix(validation_generator)
+
 
 
 if __name__ == "__main__":
