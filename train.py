@@ -18,6 +18,7 @@ import numpy as np
 from sklearn.metrics import confusion_matrix, classification_report
 
 import argparse
+import time
 
 # plots
 import matplotlib.pyplot as plt
@@ -74,8 +75,8 @@ def get_callbacks():
 
 
 # method for plotting the confusion matrix
-def plot_confusion_matrix():
-    model = load_model('/content/drive/My Drive/Hackaton/nets/final.h5')
+def plot_confusion_matrix(save_dir):
+    model = load_model(save_dir + "model_" + calendar.timegm(time.gmtime()) + ".h5")
     y_pred = model.predict_generator(validation_generator)
     y_pred = np.argmax(y_pred, axis=-1)
 
@@ -92,6 +93,7 @@ def main():
     parser = argparse.ArgumentParser(description='Preprocess raw images by intelligent downscaling')
 
     parser.add_argument('data_dir')
+    parser.add_argument('save_dir')
 
     args = parser.parse_args()
 
@@ -141,7 +143,7 @@ def main():
         validation_steps=nb_validation_samples // batch_size,
         callbacks=get_callbacks())
 
-    plot_confusion_matrix()
+    plot_confusion_matrix(args.save_dir)
 
 
 if __name__ == "__main__":
