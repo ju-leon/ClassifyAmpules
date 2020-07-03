@@ -17,9 +17,7 @@ from time import time
 import numpy as np
 from sklearn.metrics import confusion_matrix, classification_report
 
-import calendar
 import argparse
-import time
 
 # plots
 import matplotlib.pyplot as plt
@@ -29,16 +27,11 @@ import matplotlib.pyplot as plt
 def get_classifier(input_shape):
     model = Sequential()
 
-    """
     model.add(Conv2D(128, (5, 5), input_shape=input_shape))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
     model.add(Conv2D(256, (4, 4)))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    model.add(Conv2D(128, (4, 4)))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -49,17 +42,7 @@ def get_classifier(input_shape):
     model.add(Activation('relu'))
     model.add(Dense(512))
     model.add(Activation('relu'))
-
-    """
-    print(input_shape)
-
-    model.add(keras.applications.MobileNet(
-        input_shape=input_shape,
-        include_top=False,
-        weights="imagenet",
-    ))
-    model.add(Flatten())
-    model.add(Dense(2))
+    model.add(Dense(4))
     model.add(Activation('softmax'))
 
     model.compile(loss='categorical_crossentropy',
@@ -71,13 +54,13 @@ def get_classifier(input_shape):
 # method for defining the training callbacks
 def get_callbacks():
     return [TensorBoard(log_dir='logs/{}'.format(time())),
-            ModelCheckpoint(filepath="/content/drive/My Drive/Hackaton/nets/final.h5", monitor='val_accuracy',
+            ModelCheckpoint(filepath="/content/drive/My Drive/Hackaton/nets/leon.h5", monitor='val_accuracy',
                             verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)]
 
 
 # method for plotting the confusion matrix
 def plot_confusion_matrix(save_dir):
-    model = load_model(save_dir + "model_" + calendar.timegm(time.gmtime()) + ".h5")
+    model = load_model("/content/drive/My Drive/Hackaton/nets/leon.h5",)
     y_pred = model.predict_generator(validation_generator)
     y_pred = np.argmax(y_pred, axis=-1)
 
