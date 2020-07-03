@@ -42,8 +42,6 @@ def get_classifier(input_shape):
     model.add(Activation('relu'))
     model.add(Dense(512))
     model.add(Activation('relu'))
-
-    model.add(Flatten())
     model.add(Dense(2))
     model.add(Activation('softmax'))
 
