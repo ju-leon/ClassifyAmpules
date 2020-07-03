@@ -29,7 +29,6 @@ import matplotlib.pyplot as plt
 def get_classifier(input_shape):
     model = Sequential()
 
-    """
     model.add(Conv2D(128, (5, 5), input_shape=input_shape))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -50,16 +49,8 @@ def get_classifier(input_shape):
     model.add(Dense(512))
     model.add(Activation('relu'))
 
-    """
-    print(input_shape)
-
-    model.add(keras.applications.MobileNet(
-        input_shape=input_shape,
-        include_top=False,
-        weights="imagenet",
-    ))
     model.add(Flatten())
-    model.add(Dense(2))
+    model.add(Dense(4))
     model.add(Activation('softmax'))
 
     model.compile(loss='categorical_crossentropy',
