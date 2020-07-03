@@ -39,7 +39,7 @@ def get_classifier(input_shape):
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(256, (2, 2)))
+    model.add(Conv2D(64, (2, 2)))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -54,7 +54,7 @@ def get_classifier(input_shape):
     model.add(Activation('softmax'))
 
     model.compile(loss='categorical_crossentropy',
-                  optimizer=Adam(lr=0.00001, clipvalue=0.1),
+                  optimizer=Adam(lr=0.0001, clipvalue=0.1),
                   metrics=['accuracy'])
     return model
 
@@ -89,7 +89,7 @@ def main():
     args = parser.parse_args()
 
     # constants for training
-    img_width, img_height = 128, 128
+    img_width, img_height = 205, 246
     train_data_dir = args.data_dir
     nb_train_samples = 892
     nb_validation_samples = 382
