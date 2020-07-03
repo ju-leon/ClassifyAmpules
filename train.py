@@ -114,7 +114,8 @@ def main():
         target_size=(img_width, img_height),
         batch_size=batch_size,
         class_mode='categorical',
-        subset='validation')
+        subset='validation',
+        shuffle=False)
 
     classifier = get_classifier(input_shape)
 
