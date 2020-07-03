@@ -123,7 +123,6 @@ def main():
     parser = argparse.ArgumentParser(description='Preprocess raw images by intelligent downscaling')
 
     parser.add_argument('data_dir')
-    parser.add_argument('save_dir')
 
     args = parser.parse_args()
 
