@@ -66,7 +66,7 @@ def get_classifier(input_shape):
 # method for defining the training callbacks
 def get_callbacks():
     return [TensorBoard(log_dir='logs/{}'.format(time())),
-            ModelCheckpoint(filepath="/content/drive/My Drive/Hackaton/nets/leon.h5", monitor='val_accuracy',
+            ModelCheckpoint(filepath="/content/drive/My Drive/Hackaton/nets/final.h5", monitor='val_accuracy',
                             verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)]
 
 
