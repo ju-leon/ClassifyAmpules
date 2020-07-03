@@ -2,6 +2,9 @@ from sklearn.metrics import confusion_matrix
 import itertools
 import matplotlib.pyplot as plt
 
+#use: from sklearn.metrics import confusion_matrix
+#parameters: cm = confusion_matrix(y_true=labels, y_pred=predictions)
+#            classes = ["bad_piece", "good_piece"]
 def plot_confusion_matrix(cm, classes,
                         normalize=False,
                         title='Confusion matrix',
