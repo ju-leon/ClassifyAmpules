@@ -10,14 +10,14 @@ from keras.callbacks import TensorBoard, ModelCheckpoint
 from keras.models import load_model
 from keras.utils import np_utils
 
+# timestamp
+from time import time
 
 # numpy and sklearn
 import numpy as np
 from sklearn.metrics import confusion_matrix, classification_report
 
-import calendar
 import argparse
-import time
 
 # plots
 import matplotlib.pyplot as plt
