@@ -10,8 +10,6 @@ from keras.callbacks import TensorBoard, ModelCheckpoint
 from keras.models import load_model
 from keras.utils import np_utils
 
-# timestamp
-from time import time
 
 # numpy and sklearn
 import numpy as np
