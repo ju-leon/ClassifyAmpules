@@ -91,9 +91,9 @@ def main():
     batch_size = 32
 
     if K.image_data_format() == 'channels_first':
-        input_shape = (3, img_width, img_height)
+        input_shape = (2, img_width, img_height)
     else:
-        input_shape = (img_width, img_height, 3)
+        input_shape = (img_width, img_height, 2)
 
     # augmentation used for training
     train_datagen = ImageDataGenerator(
